@@ -1,0 +1,8 @@
+"0","```sql
+```sql
+
+SELECT DISTINCT LastName,City,State,Country FROM Customers INNER JOIN Invoices on Customers.CustomerID = Invoices.CustomerID
+WHERE Country IN (\Brazil\,\Canada\)
+
+```
+```"

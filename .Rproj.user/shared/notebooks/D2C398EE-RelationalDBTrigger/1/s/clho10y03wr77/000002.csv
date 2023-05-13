@@ -1,0 +1,11 @@
+"0","```sql
+
+INSERT INTO Author (aid, name, email, affiliation) VALUES 
+  
+  (1, \"John\", \"john.v@gmail.com\", \"PT\"),
+  (2, \"Sarah Williams\", \"sarah.w.12@gmail.com\", \"FT\"),
+  (3, \"Linda Rojas\", \"lr56@gmail.com\", \"Contract\"),
+  (4, \"Samuel Ramirez\", \"samram@gmail.com\", \"FT\"),
+  (5, \"Lauren Richardson\", \"lrichardsom@gmail.com\", \"PT\");
+
+```"

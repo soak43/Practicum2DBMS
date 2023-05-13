@@ -1,0 +1,9 @@
+"0","```r
+library(RSQLite)
+
+# be sure path ends in /
+fpath = \"\"
+dbfile = \"MediaDB.db\"
+
+dbcon <- dbConnect(RSQLite::SQLite(), paste0(fpath,dbfile))
+```"

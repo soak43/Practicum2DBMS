@@ -1,0 +1,1 @@
+"0","SELECT * FROM Author WHERE ValidYN = 1 AND LastName = 'Mier' AND ForeName = 'P D' AND Initials = 'PD' AND Suffix = '' AND CollectiveName = ''"

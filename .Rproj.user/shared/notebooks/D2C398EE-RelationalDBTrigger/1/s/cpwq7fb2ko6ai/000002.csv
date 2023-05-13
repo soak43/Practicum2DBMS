@@ -1,0 +1,15 @@
+"0","```sql
+
+
+CREATE TRIGGER maxAuthors
+BEFORE INSERT ON Author_Module_Map
+WHEN(
+  SELECT COUNT(*) 
+  FROM Author_Module_Map 
+  WHERE num_module = NEW.num_module
+)>=4
+BEGIN
+  SELECT RAISE(ABORT, \"A module cannot have more than 4 authors\");
+END;
+
+```"

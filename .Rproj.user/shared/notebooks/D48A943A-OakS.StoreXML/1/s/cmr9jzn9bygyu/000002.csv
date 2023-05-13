@@ -1,0 +1,9 @@
+"0","```sql
+
+SELECT genreid, genre AS genreName, count(*) AS number_of_books, 
+avg(price) AS Average_Price
+FROM Book
+INNER JOIN Genre ON Genre.rowid = Book.genreid
+GROUP BY genreid
+
+```"

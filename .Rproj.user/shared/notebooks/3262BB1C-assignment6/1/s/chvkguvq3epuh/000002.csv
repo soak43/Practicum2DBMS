@@ -1,0 +1,5 @@
+"0","```r
+round(mean(rs$ItemPrice, trim = 0.1),2)
+```"
+"1","[1] 0.99
+"

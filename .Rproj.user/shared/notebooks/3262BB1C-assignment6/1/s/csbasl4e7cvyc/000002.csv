@@ -1,0 +1,6 @@
+"0","```r
+
+sqlCmd <- \"SELECT * FROM Invoices\"
+update <- dbGetQuery(dbcon, sqlCmd)
+print(update)
+```"

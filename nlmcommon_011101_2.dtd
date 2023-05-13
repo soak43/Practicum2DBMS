@@ -1,0 +1,48 @@
+
+<!-- Personal and Author names -->
+<!ENTITY % personal.name "(LastName,(ForeName|(FirstName,MiddleName?))?,Initials?,Suffix?)">  
+<!ENTITY % author.name "(%personal.name; | CollectiveName)">
+<!ELEMENT FirstName (#PCDATA)>
+<!ELEMENT ForeName (#PCDATA)>
+<!ELEMENT MiddleName (#PCDATA)>
+<!ELEMENT LastName (#PCDATA)>
+<!ELEMENT Initials (#PCDATA)>
+<!ELEMENT Suffix (#PCDATA)>
+<!ELEMENT CollectiveName (#PCDATA)>
+<!-- Dates -->
+<!ENTITY % pub.date "((Year, ((Month, Day?) | Season)?) | MedlineDate)">
+<!ELEMENT Year (#PCDATA)>
+<!ELEMENT Month (#PCDATA)>
+<!ELEMENT Day (#PCDATA)>
+<!ELEMENT Season (#PCDATA)>
+<!ELEMENT MedlineDate (#PCDATA)>
+
+
+<!-- ================================================================= -->
+<!-- ================================================================= -->
+<!-- This is the top level element for NCBIArticle -->
+<!ELEMENT NCBIArticle (PMID, Article)>
+<!-- ================================================================= -->
+<!-- This is the top level element for Article -->
+<!ELEMENT Article ((Journal | Book),
+                    %ArticleTitle.Ref;,
+                    Affiliation?,
+                    AuthorList?)>
+
+<!ELEMENT Journal (%ISSN.Ref;, 
+                   JournalIssue,
+                   Title?,
+                   ISOAbbreviation?)>
+<!ELEMENT ISSN (#PCDATA)>
+<!ELEMENT JournalIssue (Volume?, Issue?, %PubDate.Ref;)>
+<!ELEMENT Volume (#PCDATA)>
+<!ELEMENT Issue (#PCDATA)>
+<!ELEMENT PubDate (%pub.date;)>
+<!ELEMENT Title (#PCDATA)>
+<!ELEMENT ISOAbbreviation (#PCDATA)>
+<!ELEMENT ArticleTitle (#PCDATA)>
+<!ELEMENT AuthorList (Author+)>
+<!ELEMENT Author ((%author.name;), Affiliation?)>
+<!ELEMENT Affiliation (#PCDATA)>
+<!ATTLIST AuthorList
+	CompleteYN (Y | N) "Y">

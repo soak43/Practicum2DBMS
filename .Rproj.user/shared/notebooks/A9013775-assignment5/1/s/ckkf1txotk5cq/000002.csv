@@ -1,0 +1,13 @@
+"0","```sql
+```sql
+
+SELECT DISTINCT BillingState, BillingCountry, Count(*) OVER (PARTITION BY BillingState) AS UniqueCustomers
+FROM
+(SELECT DISTINCT CustomerID, BillingState, BillingCountry
+FROM Invoices
+WHERE BillingCountry IN (\Brazil\))
+ORDER BY BillingState
+
+
+```
+```"

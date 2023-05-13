@@ -1,0 +1,3 @@
+"0","library(RMySQL)"
+"0","dbcon = dbConnect(RMySQL::MySQL(),host='localhost',port=3306,user='root',"
+"0","                  password='root123')"

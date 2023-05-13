@@ -1,0 +1,9 @@
+"0","```sql
+
+SELECT Genre.genre, genreid, count(genreid) AS book_count 
+FROM Book 
+JOIN Genre ON Genre.rowid = Book.genreid
+GROUP BY (genreid) 
+HAVING book_count >=3 
+
+```"

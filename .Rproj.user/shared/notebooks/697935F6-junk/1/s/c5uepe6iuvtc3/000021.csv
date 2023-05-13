@@ -1,0 +1,2 @@
+"0","new_df_NumUniqueAuthorsPerQuarter <- sqldf(paste0(""SELECT DISTINCT COUNT(AuthorID) as NumUniqueAuthorsPerQuarter, quarter FROM df GROUP BY quarter""))"
+"0","new_df_NumUniqueAuthorsPerQuarter"

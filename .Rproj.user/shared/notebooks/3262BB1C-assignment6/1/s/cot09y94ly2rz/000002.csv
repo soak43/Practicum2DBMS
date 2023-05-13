@@ -1,0 +1,5 @@
+"0","```r
+values <- sqldf(\"SELECT df.'total number of items', AVG(df.'extended price') as average from df group by df.'total number of items'\")
+plot(values$`total number of items`,values$average,type = 'o',xlab = \"total number of items in an invoice\",ylab = \"total amount of an invoice\")
+
+```"

@@ -1,0 +1,5 @@
+"0","```sql
+
+INSERT INTO Module VALUES (\"CS4400\",\"Big Data\",180);
+
+```"

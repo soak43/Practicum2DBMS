@@ -1,0 +1,17 @@
+"0","```r
+
+library(XML)
+
+file_path <- \"Books-v3.xml\"
+parsed_XML <- xmlParse(file_path)
+root <- xmlRoot(parsed_XML)
+
+Title <- xmlSApply(root, function(x) xmlValue(x[['title']]))
+Price <- xmlSApply(root, function(x) xmlValue(x[['price']]))
+Author <- xmlSApply(root, function(x) xmlValue(x[['author']]))
+Genre <- xmlSApply(root, function(x) xmlValue(x[['genre']]))
+Publish_Date <- xmlSApply(root, function(x) xmlValue(x[['publish_date']]))
+Description <- xmlSApply(root, function(x) xmlValue(x[['description']]))
+Edition <- xmlSApply(root, function(x) xmlValue(x[['edition']]))
+
+```"

@@ -1,0 +1,7 @@
+"0","```r
+# construct a SQL query
+sqlCmd = \"SELECT * FROM invoice_items\"
+
+# send the SQL query to the database
+rs = dbGetQuery(dbcon, sqlCmd)
+```"

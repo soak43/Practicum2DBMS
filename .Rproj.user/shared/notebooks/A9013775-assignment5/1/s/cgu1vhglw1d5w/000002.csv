@@ -1,0 +1,8 @@
+"0","```sql
+
+
+SELECT round(AVG((julianday('now')-julianday(STRFTIME(\"%Y-%m\", hireDate)|| \"-01 00:00:00\"))/(365.0/12)),0) As \"AvgTenure\" 
+FROM Employees
+
+
+```"

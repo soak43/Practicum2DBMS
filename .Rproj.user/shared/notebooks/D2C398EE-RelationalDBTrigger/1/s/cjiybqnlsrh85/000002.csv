@@ -1,0 +1,14 @@
+"0","```sql
+
+CREATE TRIGGER ModuleAuditAfterInsert
+BEFORE INSERT ON Module
+BEGIN
+  INSERT INTO ModuleAudit VALUES
+  (
+    NEW.num, NEW.title, NEW.lengthInMin,\"INSERTED\",julianday('now')
+  );
+END;
+
+
+
+```"

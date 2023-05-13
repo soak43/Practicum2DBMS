@@ -1,0 +1,13 @@
+"0","```sql
+
+CREATE TABLE Author_Module_Map (
+
+  id INTEGER PRIMARY KEY,
+  num_module TEXT NOT NULL,
+  aid_author NUMBER NOT NULL,
+  CONSTRAINT module_fk FOREIGN KEY (num_module) REFERENCES Module (num) ON DELETE CASCADE,
+  CONSTRAINT author_fk FOREIGN KEY (aid_author) REFERENCES Author (aid) ON DELETE CASCADE,
+  UNIQUE (num_module, aid_author)
+);
+
+```"

@@ -1,0 +1,13 @@
+"0","```sql
+
+with authorId AS 
+(
+SELECT title, authorid as aid
+FROM book
+WHERE price < (SELECT AVG(price)*0.8 FROM book) or 
+price > (SELECT AVG(price)*1.2 FROM book)
+)
+SELECT author, title 
+FROM Author JOIN authorId ON aid = Author.authorid
+
+```"

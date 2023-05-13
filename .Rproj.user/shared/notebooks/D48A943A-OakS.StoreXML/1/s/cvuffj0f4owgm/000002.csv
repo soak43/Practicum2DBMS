@@ -1,0 +1,11 @@
+"0","```r
+library(RSQLite)
+
+fpath = \"\"
+dbfile = \"books.db\"
+
+dbcon <- dbConnect(RSQLite::SQLite(), paste0(fpath,dbfile))
+dbExecute(dbcon, \"PRAGMA foreign_keys = OFF;\")
+```"
+"1","[1] 0
+"

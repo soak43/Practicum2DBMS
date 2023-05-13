@@ -1,0 +1,10 @@
+"0","```r
+
+for (pos in 1:nrow(df)){
+  discPrice = df[pos,\"DiscPrice\"]
+  invoiceId = df[pos,\"InvoiceId\"]
+  sqlCmd = paste0(\"UPDATE Invoices SET DiscPrice=\",discPrice,\" WHERE InvoiceId =\",invoiceId,\";\")
+  dbExecute(dbcon, sqlCmd)
+}
+
+```"

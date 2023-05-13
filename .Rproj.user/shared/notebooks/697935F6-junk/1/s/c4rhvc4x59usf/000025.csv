@@ -1,0 +1,5 @@
+"0","library(sqldf)"
+"0","detach(""package:RMySQL"", unload=TRUE)"
+"2","Error in detach(""package:RMySQL"", unload = TRUE) : 
+  invalid 'name' argument
+"

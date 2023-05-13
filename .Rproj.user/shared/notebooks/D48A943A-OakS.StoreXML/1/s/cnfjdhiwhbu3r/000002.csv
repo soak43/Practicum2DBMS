@@ -1,0 +1,15 @@
+"0","```r
+
+library(tibble)
+df.Book <- data.frame(\"id\" = ids['book_id'], \"Title\" = Title, \"Author\" = Author, 
+                      \"Genre\" = Genre, 
+                       \"Price\" = Price, \"Publish_Date\" = Publish_Date, 
+                       \"Edition\" = Edition, \"Description\" = Description)
+
+df.Author <- tibble::rowid_to_column(data.frame(\"author\" = unique(Author)),
+                                     \"authorid\")
+
+df.Genre <- tibble::rowid_to_column(data.frame(\"genre\" = unique(Genre),
+                                               \"genreid\"))
+
+```"

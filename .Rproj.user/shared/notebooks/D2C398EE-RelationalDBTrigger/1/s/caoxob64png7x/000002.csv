@@ -1,0 +1,7 @@
+"0","```sql
+
+CREATE TABLE aff(
+  name TEXT PRIMARY KEY
+)
+
+```"

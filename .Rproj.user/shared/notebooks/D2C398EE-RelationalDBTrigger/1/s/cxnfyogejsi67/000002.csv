@@ -1,0 +1,11 @@
+"0","```sql
+
+CREATE TABLE Author (
+  aid NUMBER PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  affiliation TEXT NOT NULL,
+  CONSTRAINT fk_lookup FOREIGN KEY(affiliation) REFERENCES aff(name) ON DELETE CASCADE
+);
+
+```"

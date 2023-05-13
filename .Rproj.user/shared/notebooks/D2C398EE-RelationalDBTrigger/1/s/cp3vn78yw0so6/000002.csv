@@ -1,0 +1,6 @@
+"0","```sql
+
+DELETE FROM Module
+WHERE num = \"DS2000\"
+
+```"

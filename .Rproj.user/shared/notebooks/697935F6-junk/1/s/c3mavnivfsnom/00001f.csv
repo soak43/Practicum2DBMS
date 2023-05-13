@@ -1,0 +1,8 @@
+"0","df <- dbGetQuery(dbcon, ""SELECT J.JournalID, IssnTypeID, ISSN, J.JournalTitle, ISOAbbreviation, JI.JournalIssueID, CitedMediumID, Volume, Issue, A.PMID, A.ArticleTitle, A.SeasonID, A.PubDate, A.MedlineDate, AL.AuthorID"
+"0","FROM Journal J"
+"0","INNER JOIN JournalIssue JI ON J.JournalID = JI.JournalID"
+"0","INNER JOIN Article A ON JI.JournalIssueID = A.JournalIssueID"
+"0","INNER JOIN AuthorList AL ON A.PMID = AL.PMID"
+"0","GROUP BY J.JournalID"
+"0","LIMIT 100;"")"
+"0","df"

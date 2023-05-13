@@ -1,0 +1,8 @@
+"0","```sql
+
+INSERT INTO Module(num, title, lengthInMin) VALUES
+  (\"CS6900\", \"Data Analytics\", 120),
+  (\"CS3100\", \"Algorithms\", 500),
+  (\"DS2000\", \"Data Visualization\", 400);
+
+```"

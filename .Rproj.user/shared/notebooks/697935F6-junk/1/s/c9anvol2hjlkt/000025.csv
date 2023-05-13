@@ -1,0 +1,2 @@
+"0","new_df_NumArticlesPerQuarter <- sqldf(""SELECT quarter, Count(PMID) as articlesPerQuarter FROM df GROUP BY quarter"")"
+"0","new_df_NumArticlesPerQuarter"

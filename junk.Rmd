@@ -1,0 +1,163 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(RSQLite)
+dbcon <- dbConnect(RSQLite::SQLite(), "publications.db")
+```
+
+```{sql connection=dbcon}
+
+SELECT * FROM JournalIssue
+
+```
+```{sql connection=dbcon}
+
+SELECT * FROM Article
+
+```
+
+```{sql connection=dbcon}
+SELECT * FROM Author WHERE ValidYN = 1 AND LastName = 'Mier' AND ForeName = 'P D' AND Initials = 'PD' AND Suffix = '' AND CollectiveName = ''
+```
+
+```{sql connection=dbcon}
+select * from author
+
+```
+```{sql connection=dbcon}
+SELECT * FROM JournalIssue WHERE JournalID = 2 AND Volume = 66 AND Issue = 4 AND CitedMediumID = 2
+```
+```{sql connection=dbcon}
+
+SELECT *
+FROM Journal J
+INNER JOIN JournalIssue JI ON J.JournalID = JI.JournalID
+INNER JOIN Article A ON JI.JournalIssueID = A.JournalIssueID
+INNER JOIN AuthorList AL ON A.PMID = AL.PMID
+GROUP BY J.JournalID
+LIMIT 100;
+
+```
+
+```{r}
+df <- dbGetQuery(dbcon, "SELECT J.JournalID, IssnTypeID, ISSN, J.JournalTitle, ISOAbbreviation, JI.JournalIssueID, CitedMediumID, Volume, Issue, A.PMID, A.ArticleTitle, A.SeasonID, A.PubDate, A.MedlineDate, AL.AuthorID
+FROM Journal J
+INNER JOIN JournalIssue JI ON J.JournalID = JI.JournalID
+INNER JOIN Article A ON JI.JournalIssueID = A.JournalIssueID
+INNER JOIN AuthorList AL ON A.PMID = AL.PMID
+GROUP BY J.JournalID
+LIMIT 100;")
+df
+```
+
+```{r}
+df$quarter <- NA
+df$year <- NA
+```
+
+```{r}
+s <- "1975/06/0"
+year <- as.integer(substr(s, 1, 4))
+month <- substr(s, 6, 7)
+q <- as.integer(as.integer(month)/4) + 1
+print(year)
+print(q)
+print(df[1,'PubDate'])
+```
+
+
+```{r}
+df$month <- NA
+for(i in 1:nrow(df)){
+  
+  df[i,'year'] <- as.integer(substr(df[i,'PubDate'], 1, 4))
+  if(is.na(df[i,'year'])){
+    df[i,'year'] <- 0
+  }
+  month <- substr(df[i,'PubDate'], 6, 7)
+  df[i,'quarter'] <- as.integer(as.integer(month)/4) + 1
+  if(is.na(df[i,'quarter'])){
+    df[i,'quarter'] <- 0
+  }
+  df[i,'month'] <- as.integer(month)
+  if(is.na(df[i,'month'])){
+    df[i,'month'] <- 0
+  }
+}
+df
+```
+
+```{r}
+time_df <- sqldf("SELECT * FROM df WHERE year = 1975 AND month = 4 AND quarter = 2")
+time_df
+```
+
+
+```{r}
+library(sqldf)
+detach("package:RMySQL", unload=TRUE)
+#sqlcmd_NumArticlesPerQuarter <- "SELECT Count(PMID) FROM df GROUP BY df$year, df$quarter"
+
+```
+```{r NumArticlesPerQuarter}
+new_df_NumArticlesPerQuarter <- sqldf("SELECT quarter, Count(PMID) as articlesPerQuarter FROM df GROUP BY quarter")
+new_df_NumArticlesPerQuarter
+```
+```{r}
+new_df_NumArticlesPerYear <- sqldf("SELECT year, Count(PMID) as articlesPerYear FROM df GROUP BY year")
+new_df_NumArticlesPerYear
+```
+
+```{r NumUniqueAuthorsPerQuarter}
+new_df_NumUniqueAuthorsPerQuarter <- sqldf(paste0("SELECT DISTINCT COUNT(AuthorID) as NumUniqueAuthorsPerQuarter, quarter FROM df GROUP BY quarter"))
+new_df_NumUniqueAuthorsPerQuarter
+```
+
+```{r NumUniqueAuthorsPerMonth}
+new_df_NumUniqueAuthorsPerMonth <- sqldf(paste0("SELECT JournalID, month, COUNT(AuthorID) AS NumUniqueAuthorsPerMonth FROM df GROUP BY month"))
+new_df_NumUniqueAuthorsPerMonth
+```
+
+
+```{r}
+
+df$NumArticlesPerQuarter <- NA
+df$NumArticlesPerYear <- NA
+df$NumUniqueAuthorsPerMonth <- NA
+df$NumUniqueAuthorsPerQuarter <- NA
+
+for(i in 1:nrow(df)){
+  
+  y <- df[i,'year']
+  m <- df[i,'month']
+  q <- df[i,'quarter']
+  df[i,'NumArticlesPerQuarter'] <- sqldf(paste0("SELECT articlesPerQuarter FROM new_df_NumArticlesPerQuarter WHERE quarter = ",q))
+  df[i,'NumArticlesPerYear'] <- sqldf(paste0("SELECT articlesPerYear FROM new_df_NumArticlesPerYear WHERE year = ",y))
+  df[i,'NumUniqueAuthorsPerMonth'] <- sqldf(paste0("SELECT NumUniqueAuthorsPerMonth FROM new_df_NumUniqueAuthorsPerMonth WHERE month = ",m))
+  df[i,'NumUniqueAuthorsPerQuarter'] <- sqldf(paste0("SELECT NumUniqueAuthorsPerQuarter FROM new_df_NumUniqueAuthorsPerQuarter WHERE quarter = ",q))
+}
+df
+```
+```{r}
+journal_fact_df <- subset(df, select = c(JournalID, year, month, quarter, NumArticlesPerQuarter, NumArticlesPerYear, NumUniqueAuthorsPerMonth, NumUniqueAuthorsPerQuarter))
+journal_fact_df$timeID <- NA
+journal_fact_df
+```
+
+
+```{r NumArticlesPerYear}
+sqldf("SELECT Count(PMID), year FROM df GROUP BY year")
+```
+
+
+```{r}
+con = dbConnect(RMySQL::MySQL(),host='localhost',port=3306,user='root',password='root123')
+```
+
+```{sql connection=con}
+select * from JournalDimension limit 10
+```
+

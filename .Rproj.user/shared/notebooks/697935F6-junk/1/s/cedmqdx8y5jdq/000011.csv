@@ -1,0 +1,2 @@
+"0","new_df_NumArticlesPerYear <- sqldf(""SELECT year, Count(PMID) as articlesPerYear FROM df GROUP BY year"")"
+"0","new_df_NumArticlesPerYear"

@@ -1,0 +1,9 @@
+"0","
+SELECT *
+FROM Journal J
+INNER JOIN JournalIssue JI ON J.JournalID = JI.JournalID
+INNER JOIN Article A ON JI.JournalIssueID = A.JournalIssueID
+INNER JOIN AuthorList AL ON A.PMID = AL.PMID
+GROUP BY J.JournalID
+LIMIT 100;
+"

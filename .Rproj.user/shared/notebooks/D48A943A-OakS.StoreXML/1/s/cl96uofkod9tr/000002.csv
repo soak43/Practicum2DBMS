@@ -1,0 +1,8 @@
+"0","```r
+out <- xpathApply(parsed_XML, \"//book\", function(x){
+  coords <- xmlAttrs(x)
+  data.frame(book_id = coords[1], stringsAsFactors = FALSE)
+})
+ids <- do.call(rbind.data.frame, out)
+ids
+```"

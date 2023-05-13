@@ -1,0 +1,2 @@
+"0","time_df <- sqldf(""SELECT * FROM df WHERE year = 1975 AND month = 4 AND quarter = 2"")"
+"0","time_df"

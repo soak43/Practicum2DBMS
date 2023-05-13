@@ -1,0 +1,7 @@
+"0","SELECT JournalTitle, TimeDimension.Year, TimeDimension.Quarter, SUM(NumArticlesPerQuarter) as TotalArticles
+FROM JournalFacts
+JOIN JournalDimension ON JournalFacts.JournalID = JournalDimension.JournalID
+JOIN TimeDimension ON JournalFacts.TimeID = TimeDimension.TimeID
+GROUP BY JournalTitle, TimeDimension.Year, TimeDimension.Quarter
+ORDER BY JournalTitle AND TimeDimension.Quarter AND TimeDimension.Year;
+"

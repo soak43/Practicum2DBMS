@@ -1,0 +1,10 @@
+"0","
+SELECT JournalTitle, SUM(JournalFacts.NumArticlesPerYear) as TotalArticles
+FROM JournalFacts
+JOIN JournalDimension ON JournalFacts.JournalID = JournalDimension.JournalID
+JOIN TimeDimension ON JournalFacts.TimeID = TimeDimension.TimeID
+WHERE TimeDimension.Year BETWEEN 1975 AND 1980 
+GROUP BY JournalDimension.JournalTitle
+ORDER BY TotalArticles DESC
+LIMIT 5;
+"

@@ -1,0 +1,4 @@
+"0","```r
+rs$ItemPrice <- rs$Quantity * rs$UnitPrice
+head(rs,5)
+```"

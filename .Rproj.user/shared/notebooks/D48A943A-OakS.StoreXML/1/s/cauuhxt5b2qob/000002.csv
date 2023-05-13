@@ -1,0 +1,5 @@
+"0","```r
+df.Book <- df.Book[, -which(names(df.Book) == \"Author\")]
+df.Book <- df.Book[, -which(names(df.Book) == \"Genre\")]
+df.Book
+```"

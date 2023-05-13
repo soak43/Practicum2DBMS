@@ -1,0 +1,12 @@
+"0","```sql
+
+CREATE TRIGGER ModuleAuditAfterDelete
+BEFORE DELETE ON Module
+BEGIN
+  INSERT INTO ModuleAudit VALUES
+  (
+    OLD.num, OLD.title, OLD.lengthInMin,\"DELETED\",julianday('now')
+  );
+END;
+
+```"

@@ -1,0 +1,29 @@
+"0","```r
+
+df.Book$authorid <- vector(\"integer\", nrow(df.Book))
+df.Book$genreid <- vector(\"integer\", nrow(df.Book))
+
+for(i in 1:nrow(df.Book)){
+  
+  if (df.Book[i,'Author'] %in% df.Author$author) {
+    # If yes, get the corresponding authorid
+    author_id <- df.Author$authorid[which(df.Author$author == 
+                                            df.Book[i,'Author'])]
+    
+    df.Book[i,'authorid'] <- author_id
+  } 
+  
+  if (df.Book[i,'Genre'] %in% df.Genre$genre) {
+    # If yes, get the corresponding genreid
+    genre_id <- df.Genre$rowid[which(df.Genre$genre == df.Book[i,'Genre'])]
+    #print(genre_id)
+    df.Book[i,'genreid'] <- genre_id
+  } 
+  
+}
+
+df.Book$Price <- as.numeric(df.Book$Price)
+df.Book$Edition <- as.integer(df.Book$Edition)
+
+
+```"

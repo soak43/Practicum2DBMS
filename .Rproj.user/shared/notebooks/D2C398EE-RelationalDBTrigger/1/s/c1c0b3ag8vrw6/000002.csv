@@ -1,0 +1,8 @@
+"0","```sql
+
+INSERT INTO Author_Module_Map (id, num_module, aid_author) VALUES
+
+  (6, 'CS6900', 2),
+  (7, 'CS6900', 3);
+
+```"

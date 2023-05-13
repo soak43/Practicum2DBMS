@@ -1,0 +1,1 @@
+"0","sqldf(""SELECT Count(PMID), year FROM df GROUP BY year"")"

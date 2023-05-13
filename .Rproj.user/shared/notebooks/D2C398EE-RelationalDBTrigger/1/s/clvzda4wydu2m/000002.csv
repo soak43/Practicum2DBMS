@@ -1,0 +1,16 @@
+"0","```r
+#sqlCmd = \"INSERT INTO Author_Module_Map (id, num_module, aid_author) VALUES
+```"
+"1","Warning message:
+In result_fetch(res@ptr, n = n) :
+  SQL statements must be issued with dbExecute() or dbSendStatement() instead of dbGetQuery() or dbSendQuery().
+"
+"0","```r
+#
+#  (6, 'CS6900', 2),
+#  (7, 'CS6900', 3),
+#  (8, 'CS6900', 5);\"
+#
+#dbExecute(dbcon,sqlCmd)
+
+```"

@@ -1,0 +1,2 @@
+"0","new_df_NumUniqueAuthorsPerMonth <- sqldf(paste0(""SELECT JournalID, month, COUNT(AuthorID) AS NumUniqueAuthorsPerMonth FROM df GROUP BY month""))"
+"0","new_df_NumUniqueAuthorsPerMonth"

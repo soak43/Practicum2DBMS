@@ -1,0 +1,12 @@
+"0","```sql
+
+CREATE TABLE ModuleAudit
+(
+  moduleNum TEXT PRIMARY KEY,
+  title TEXT NOT NULL,
+  lengthInMin NUMBER NOT NULL,
+  status TEXT NOT NULL,
+  updateTime DATE NOT NULL
+)
+
+```"

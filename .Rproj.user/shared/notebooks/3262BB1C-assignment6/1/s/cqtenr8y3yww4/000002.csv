@@ -1,0 +1,12 @@
+"0","```r
+df$DiscPrice <- NULL
+for (pos in 1:nrow(df)) {
+  if(df[pos,\"total number of items\"]>10){
+    df[pos,\"DiscPrice\"] <- round(0.9*df[pos,\"extended price\"],2)
+  }
+  else{
+    df[pos,\"DiscPrice\"] <- df[pos,\"extended price\"]
+  }
+}
+print(df)
+```"
